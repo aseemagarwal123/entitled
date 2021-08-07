@@ -10,21 +10,27 @@ const loanSchema = new mongoose.Schema({
   },
   pan: {
     type: String,
+    validate: {
+      validator: function(v) {
+        return /[A-Z]{5}[0-9]{4}[A-Z]{1}/.test(v);
+      },
+      message: props => `${props.value} is not a valid pan number`
+    },
     unique: true,
-    required: [true, "pan no is required"]
+    required: [true, 'Pan No required']
   },
   emp_id: {
     type: String,
     unique: true,
-    required: [true, "employee id is required"]
+    required: [true, "Employee Id is required"]
   },
   amt_req: {
     type: Number,
-    required: [true, "amount is required"]
+    required: [true, "Amount is required"]
   },
   num_emis: {
     type: Number,
-    required: [true, "number is required"]
+    required: [true, "Number of EMI is required"]
   },
 });
 

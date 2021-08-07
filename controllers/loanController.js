@@ -5,7 +5,7 @@ async function addLoan(req, res, next) {
   try {
     var loanObject = new loan(req.body)
     loanObject = await loanObject.save();
-    res.send(loanObject)
+    res.status(HttpCodes.CREATED).send({"result":loanObject, message:"Loan Entry created successfully"})
   } catch (ex) {
     next(ex);
   }
