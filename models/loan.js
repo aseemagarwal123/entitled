@@ -29,6 +29,6 @@ const loanSchema = new mongoose.Schema({
 });
 
 loanSchema.plugin(timestamps);
-loanSchema.plugin(uniqueValidator, { message: 'Error, Already exists' });
+loanSchema.plugin(uniqueValidator, { message: 'Error, {PATH} Already exists' });
 const loan = mongoose.model('loans', loanSchema);
 exports.loan = loan;
