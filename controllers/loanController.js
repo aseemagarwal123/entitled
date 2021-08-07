@@ -7,6 +7,7 @@ async function addLoan(req, res, next) {
     loanObject = await loanObject.save();
     res.send(loanObject)
   } catch (ex) {
+    console.log(ex)
     next(ex);
   }
 }

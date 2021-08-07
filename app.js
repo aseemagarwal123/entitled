@@ -28,14 +28,15 @@ app.use('/', appRoutes);
 
 // 404 error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  next(createError(404))
 });
 // Main error handler for express app. All errors passed to next() are caught here.
 // eslint-disable-next-line no-unused-vars
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  return res.status(err.status || 500).send({message: err.message});
+  let status = (err.message.indexOf("validation") > -1 || err.code == 11000)  ? 400 : 500
+  return res.status(err.status || status).send({message: err.message});
 });
 
 module.exports = app;
