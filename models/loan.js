@@ -24,7 +24,7 @@ const loanSchema = new mongoose.Schema({
   },
   num_emis: {
     type: Number,
-    required: true,
+    required: [true, "number is required"]
   },
 });
 
